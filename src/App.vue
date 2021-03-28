@@ -1,26 +1,43 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-labels */
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container pt-1">
+    <div class="card">
+      <h2>Actual news {{now}}</h2>
+    </div>
+    <app-news v-for="item in news" :key="item.id" :title="item.title" :id="item.id" :is-open="item.isOpen"></app-news>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import AppNews from './AppNews'
 
 export default {
-  name: 'App',
+  data () {
+    return {
+      now: new Date().toLocaleDateString(),
+      news: [
+        {
+          title: 'First news',
+          id: 1,
+          isOpen: false
+        },
+        {
+          title: 'Seconds news',
+          id: 2,
+          isOpen: false
+        },
+        {
+          id: 3
+        }
+      ]
+    }
+  },
   components: {
-    HelloWorld
+    // 'app-news': AppNews
+    // AppNews: AppNews
+    AppNews
   }
 }
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
