@@ -3,9 +3,16 @@
 <template>
   <div class="container pt-1">
     <div class="card">
-      <h2>Actual news {{now}}</h2>
+      <h2>Actual news {{now}} <span>Opens: {{openRate}}</span></h2>
     </div>
-    <app-news v-for="item in news" :key="item.id" :title="item.title" :id="item.id" :is-open="item.isOpen"></app-news>
+    <app-news 
+      v-for="item in news" 
+      :key="item.id" 
+      :title="item.title" 
+      :id="item.id" 
+      :is-open="item.isOpen"
+      @open-news="openRate++"
+      ></app-news>
   </div>
 </template>
 
@@ -17,6 +24,7 @@ export default {
   data () {
     return {
       now: new Date().toLocaleDateString(),
+      openRate: 0,
       news: [
         {
           title: 'First news',
